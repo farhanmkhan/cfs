@@ -1,0 +1,40 @@
+apply plugin: 'java'
+
+group 'com.ghim.s3m'
+version '1.0-SNAPSHOT'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}
+
+ext.libs = [
+        junitLib: [
+                'junit:junit:4.11',
+                'org.mockito:mockito-all:1.10.19'
+        ]
+]
+
+ext.parentVersion = version
+
+allprojects {
+    compileJava.options.encoding = 'UTF-8'
+    compileJava.sourceCompatibility = 1.8
+    compileJava.targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        compile {
+            description = 'Compile Classpath'
+            transitive = true
+        }
+    }
+}
+
+dependencies {
+    testCompile libs.junitLib
+}
+
+

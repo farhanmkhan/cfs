@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+group 'com.ghim.cfs'
+version parentVersion
+
+dependencies {
+    compile 'com.amazonaws:aws-java-sdk:1.11.136'
+    testCompile libs.junitLib
+}

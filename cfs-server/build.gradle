@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+group 'com.ghim.cfs'
+version parentVersion
+
+dependencies {
+    compile 'com.sparkjava:spark-core:2.6.0'
+    compile 'com.google.guava:guava:19.0'
+
+    testCompile libs.junitLib
+}
