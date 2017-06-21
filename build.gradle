@@ -1,29 +1,21 @@
-apply plugin: 'java'
-
-group 'com.ghim.s3m'
+group 'com.ghim.cfs'
 version '1.0-SNAPSHOT'
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
-}
-
-ext.libs = [
-        junitLib: [
-                'junit:junit:4.11',
-                'org.mockito:mockito-all:1.10.19'
-        ]
-]
-
-ext.parentVersion = version
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 allprojects {
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.spring.io/release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/snapshot" }
+    }
+
     compileJava.options.encoding = 'UTF-8'
     compileJava.sourceCompatibility = 1.8
     compileJava.targetCompatibility = 1.8
-
-    repositories {
-        mavenCentral()
-    }
 
     configurations {
         compile {
@@ -32,6 +24,19 @@ allprojects {
         }
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}
+
+ext.libs = [
+    junitLib: [
+        'junit:junit:4.12',
+        'org.mockito:mockito-all:1.10.19'
+    ]
+]
+
+ext.parentVersion = version
 
 dependencies {
     testCompile libs.junitLib
